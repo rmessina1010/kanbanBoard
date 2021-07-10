@@ -2,6 +2,7 @@ export const projects = [
     {
         id: 1,
         title: 'project1',
+        type: null,
         open: true,
         steps: [
             {
@@ -71,6 +72,7 @@ export const projects = [
     {
         id: 2,
         title: 'project2',
+        type: null,
         open: true,
         steps: [
             {
