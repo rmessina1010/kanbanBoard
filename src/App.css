@@ -1,38 +1,107 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+			 html{
+				background: url('https://www.carbonbrief.org/wp-content/uploads/2021/06/Blue-sky-with-clouds-1550x804.jpg') center ;
+				background-size: cover;
+				}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+			.drg-area{
+				color: #fff;
+				font-family: sans-serif;
+				display:flex;
+				flex-wrap:wrap;
+				align-items: flex-start;
+  			}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+			.drg-item{
+				font-size: 80%;
+				padding:  .67em 1em;
 
-.App-link {
-  color: #61dafb;
-}
+			}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+			.drg-item:hover{
+				background: orange;
+				color: #000;
+			}
+
+			.drg-item + .drg-item{
+				border-top:1px solid #ccc;
+			}
+
+			.drg-col{
+				display: inline-block;
+				background: rgba(8, 22, 43, 0.82);
+				background-blend-mode: multiply;
+				border-radius:1em;
+				padding:  1em;
+				padding-bottom: 0;
+				margin:.5em;
+				max-width: calc(25% - 3em);
+				min-width: 7em;
+				flex:1 1 calc(25% - 3em);
+				vertical-align: top;
+
+			}
+
+			.drg-col-title{
+				margin: 0 0 .67em 0 ;
+				padding: 0;
+				font-weight: normal;
+			}
+
+			.drg-list{
+				list-style: none;
+				padding:0;
+				margin-bottom: .5em;
+				margin:0 0 1em 0;
+				border-radius: .25em;
+				background: #4b4b54;
+				box-shadow: 1px 1px 6px 1px #222;
+				overflow: hidden;
+			}
+
+
+			.drg-add{
+				max-height: 100%;
+				padding-bottom: .75em;
+				margin: 0;
+ 			}
+
+			.drg-add >input, .drg-add > button {
+				display:none;
+				border-radius: .25em;
+				border: none;
+ 				padding: .5em;
+ 				margin-bottom: .5em;
+			}
+
+			.drg-add > input {
+
+				width: 100%;
+			}
+
+ 		  .drg-add:hover >*{ display: inline-block;  animation: reveal .3s ease-in;}
+
+		  .drg-add:hover::before{ display: none;}
+
+		  .drg-add::before{
+		   content: '+';
+		   display: table;
+		   vertical-align: middle;
+		   border-radius:3em;
+		   background: #ccc;
+		   color: #000;
+		   text-align: center;
+		   width: 1.2em;
+		   height: 1.2em;
+		   margin-left: auto;
+		 }
+
+		 @keyframes reveal{
+			 0%{
+				 max-height: 1px;
+
+			 }
+			 100%{
+				 max-height: 100%;
+ 			 }
+		 }
