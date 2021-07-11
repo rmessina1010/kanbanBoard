@@ -23,3 +23,11 @@ export default function AddItem(props) {
     )
 }
 
+export function Hx(props) {
+    let x = !isNaN(props.x) ? props.x * 1 : 4;
+    x = x > 6 ? 6 : x;
+    x = x < 1 ? 1 : x;
+    let Header = `h${x}`;
+
+    return props.title ? <Header className={props.classes || ''} >{props.title}</Header> : null;
+}

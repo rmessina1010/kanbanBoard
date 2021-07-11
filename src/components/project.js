@@ -1,12 +1,14 @@
 import React from 'react';
-
+import { Hx } from './additem';
+import DraggableList from './draggables';
 
 export default function ProjectArea(props) {
-    const htag = props.htag || 3;
-    const Header = `h${htag}`;
     return (
         <div className="drag-proj">
-            <Header class="proj-title">{props.data.title}</Header>
+            <Hx classes="proj-title" x={props.hx} title={props.data.title} />
+            <div className="drg-area">
+                {props.data.cols.map(col => <DraggableList data={col} key={'drg-col-' + col.colId} />)}
+            </div>
         </div>
     );
 }

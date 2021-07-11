@@ -4,10 +4,10 @@ const projects = [
         title: 'project1',
         type: null,
         open: true,
-        steps: [
+        cols: [
             {
-                step: 'one',
-                stepId: 1,
+                colTitle: 'one',
+                colId: 1,
                 items: [{
                     id: 1,
                     item: 'item1',
@@ -53,18 +53,18 @@ const projects = [
             },
 
             {
-                step: 'two',
-                stepId: 2,
+                colTitle: 'two',
+                colId: 2,
                 items: []
             },
             {
-                step: 'three',
-                stepId: 3,
+                colTitle: 'three',
+                colId: 3,
                 items: []
             },
             {
-                step: 'four',
-                stepId: 4,
+                colTitle: 'four',
+                colId: 4,
                 items: []
             }
         ]
@@ -74,10 +74,10 @@ const projects = [
         title: 'project2',
         type: null,
         open: true,
-        steps: [
+        cols: [
             {
-                step: 'one',
-                stepId: 1,
+                colTitle: 'one',
+                colId: 1,
                 items: []
             }
 

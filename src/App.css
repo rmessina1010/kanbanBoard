@@ -5,7 +5,7 @@
 			}
 
 			 html {
-				background: url("https://www.carbonbrief.org/wp-content/uploads/2021/06/Blue-sky-with-clouds-1550x804.jpg") no-repeat  ;
+				background: url("./images/Blue_sky_with_clouds_1550x804.jpg") no-repeat  ;
 				background-size: cover;
 				min-height: 100%;
 				padding: 0;
@@ -85,6 +85,14 @@
 				border: none;
  				padding: .5em;
  				margin-bottom: .5em;
+			}
+
+			.drg-add > button{
+				margin-right: .33em;
+			}
+			.drg-add > button:active{
+				color: #fff;
+				background-color:rgb(7, 92, 219);
 			}
 
 			.drg-add > input {
