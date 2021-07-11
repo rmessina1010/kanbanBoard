@@ -33,7 +33,7 @@
 
 			.drg-item{
 				font-size: 80%;
-				padding:  .67em 1em;
+				padding:  .5em 1em;
 				border-radius: .25em;
 				margin:.66em 0;
 				background: #7f7f7f;
@@ -74,9 +74,10 @@
 			}
 
 			.drg-add{
-				max-height: 100%;
-				padding-bottom: .75em;
+ 				padding-bottom: .75em;
 				margin: 0;
+				display: flex;
+				flex-wrap: wrap ;
  			}
 
 			.drg-add >input, .drg-add > button {
@@ -100,29 +101,51 @@
 				box-sizing: border-box;
 			}
 
- 		  .drg-add:hover > *{ display: inline-block;  animation: reveal .3s ease-in;}
 
-		  .drg-add:hover::before{ display: none;}
+ 		  .drg-add.show-drg-add > *{
+			   display: inline-block;
+			   box-sizing: border-box;
+			   animation: reveal .3s ease-out;
+		}
 
-		  .drg-add::before{
-		   content: '+';
-		   display: table;
-		   vertical-align: middle;
-		   border-radius:3em;
-		   background: #ccc;
-		   color: #000;
-		   text-align: center;
-		   width: 1.2em;
-		   height: 1.2em;
+
+		  .drg-add .drg-add-tog{
+		   display: flex;
 		   margin-left: auto;
-		 }
+ 		   width: 1.6em;
+		   height: 1.6em;
+		   border-radius: 3em;
+		   justify-content: center;
+		   align-items: center;
+		   align-content: center;
+  		 }
+
+
+		.drg-add .drg-add-tog::before{
+			content: '+';
+			line-height: 1;
+  		}
+
+
+		.drg-add.show-drg-add .drg-add-tog{
+		   display: inline-block;
+ 		   width: auto;
+		   height: auto;
+		   border-radius: .25em;
+ 		}
+
+        .drg-add.show-drg-add .drg-add-tog::before{
+			content: 'Cancel';
+			display: inline;
+			border-radius: 0;
+ 		}
 
 		 @keyframes reveal{
 			 0%{
-				 max-height: 1px;
-
+				 max-height: .01em;
+				 overflow: hidden;
 			 }
 			 100%{
-				 max-height: 100%;
+				 max-height:3em;
  			 }
 		 }

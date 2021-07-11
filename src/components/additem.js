@@ -15,10 +15,11 @@ export default function AddItem(props) {
     }
 
     return (
-        <div class="drg-add">
+        <div className="drg-add" >
             <input name="add" value={data} onChange={(e) => selfUpdate(e)} onKeyUp={(e) => pressSub(e)} />
             <button type="button" onClick={updateTarget} >Add Item</button>
-            <button type="reset" onClick={() => setData('')}>Clear</button>
+            <button type="button" onClick={() => setData('')}>Clear</button>
+            <button type="button" className="drg-add-tog" onClick={(e) => e.target.closest(".drg-add").classList.toggle('show-drg-add')}></button>
         </div>
     )
 }
