@@ -1,7 +1,15 @@
 
-			 html{
-				background: url('https://www.carbonbrief.org/wp-content/uploads/2021/06/Blue-sky-with-clouds-1550x804.jpg') center ;
+			 html, body{
+				 margin:0;
+				 padding: 0;
+			}
+
+			 html {
+				background: url("https://www.carbonbrief.org/wp-content/uploads/2021/06/Blue-sky-with-clouds-1550x804.jpg") no-repeat  ;
 				background-size: cover;
+				min-height: 100%;
+				padding: 0;
+				margin: 0;
 				}
 
 			.drg-area{
@@ -10,22 +18,33 @@
 				display:flex;
 				flex-wrap:wrap;
 				align-items: flex-start;
+				justify-content: center;
   			}
+
+			.proj-title{
+			 color:#fff;
+			 font-family: sans-serif;
+			 text-align: center;
+			 text-shadow: 0 1px 0 #111;
+			 background: rgba(8, 22, 43, 0.82);
+			 margin: 0 0 1em 0 ;
+			 padding: .5em;
+		 }
 
 			.drg-item{
 				font-size: 80%;
 				padding:  .67em 1em;
-
-			}
+				border-radius: .25em;
+				margin:.66em 0;
+				background: #7f7f7f;
+ 				box-shadow: 1px 1px 4px #000;
+ 			}
 
 			.drg-item:hover{
 				background: orange;
 				color: #000;
 			}
 
-			.drg-item + .drg-item{
-				border-top:1px solid #ccc;
-			}
 
 			.drg-col{
 				display: inline-block;
@@ -51,14 +70,8 @@
 			.drg-list{
 				list-style: none;
 				padding:0;
-				margin-bottom: .5em;
-				margin:0 0 1em 0;
-				border-radius: .25em;
-				background: #4b4b54;
-				box-shadow: 1px 1px 6px 1px #222;
-				overflow: hidden;
+ 				margin: 1em 0;
 			}
-
 
 			.drg-add{
 				max-height: 100%;
@@ -75,11 +88,11 @@
 			}
 
 			.drg-add > input {
-
 				width: 100%;
+				box-sizing: border-box;
 			}
 
- 		  .drg-add:hover >*{ display: inline-block;  animation: reveal .3s ease-in;}
+ 		  .drg-add:hover > *{ display: inline-block;  animation: reveal .3s ease-in;}
 
 		  .drg-add:hover::before{ display: none;}
 

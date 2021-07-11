@@ -1,9 +1,12 @@
 import './App.css';
-import AddItem from './components/additem';
+import ProjectArea from './components/project';
+import projects from './components/data';
 
 function App() {
   return (
-    <div className="App"><AddItem update={e => alert(e)} /></div>
+    <div className="App">
+      <ProjectArea htag={2} data={projects[0]} />
+    </div>
   );
 }
 
