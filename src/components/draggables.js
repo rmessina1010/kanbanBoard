@@ -20,7 +20,7 @@ export default function DraggableList(props) {
     return (
         <div className={'drg-col'}>
             <Hx classes='drg-list-title' x={4} title={props.data.colTitle} />
-            <ul className={'drg-list'}>
+            <ul className={'drg-list'} onDragEnter={(e) => console.log(e.target)}>
                 {items.map(item => <DraggableItem data={item} key={'drg-item-' + item.id} />)}
             </ul>
             <AddItem update={appendItem} />
@@ -30,6 +30,6 @@ export default function DraggableList(props) {
 
 export function DraggableItem(props) {
     return (
-        <li class="drg-item">{props.data.item}</li>
+        <li className="drg-item" draggable={true} >{props.data.item}</li>
     );
 }
