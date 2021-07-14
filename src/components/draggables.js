@@ -19,11 +19,24 @@ export default function DraggableList(props) {
         setNext(next + 1);
     }
 
+    const handleDragEnd = (res) => {
+        const newOrd = [...items];
+        let theItem = null;
+
+        if (res.destination === null || res.destination.index !== res.source.index) {
+            [theItem] = newOrd.splice(res.source.index, 1);
+        }
+        if (res.destination) {
+            newOrd.splice(res.destination.index, 0, theItem);
+        }
+        setItems(newOrd)
+    }
+
     return (
         <div className={'drg-col'}>
             <Hx classes='drg-list-title' x={4} title={props.data.colTitle} />
-            <DragDropContext>
-                <Droppable droppableId={'drg-list' + props.data.id}>
+            <DragDropContext onDragEnd={handleDragEnd}>
+                <Droppable droppableId={'drg-list-' + props.data.colId}>
                     {(provided) => {
                         return (<ul className={'drg-list'} ref={provided.innerRef} {...provided.droppableProps}>
                             {items.map((item, index) =>
