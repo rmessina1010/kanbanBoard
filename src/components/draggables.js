@@ -1,5 +1,7 @@
 import AddItem, { Hx } from './additem';
 import React, { useState } from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+
 
 export default function DraggableList(props) {
 
@@ -20,16 +22,21 @@ export default function DraggableList(props) {
     return (
         <div className={'drg-col'}>
             <Hx classes='drg-list-title' x={4} title={props.data.colTitle} />
-            <ul className={'drg-list'} onDragEnter={(e) => console.log(e.target)}>
-                {items.map(item => <DraggableItem data={item} key={'drg-item-' + item.id} />)}
-            </ul>
+            <DragDropContext>
+                <Droppable droppableId={'drg-list' + props.data.id}>
+                    {(provided) => {
+                        return (<ul className={'drg-list'} ref={provided.innerRef} {...provided.droppableProps}>
+                            {items.map((item, index) =>
+                                <Draggable key={'drg-item-' + item.id} draggableId={'drg-item-' + item.id} index={index}>
+                                    {(provided) => <li className="drg-item" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>{item.item}</li>}
+                                </Draggable>
+                            )}
+                            {provided.placeholder}
+                        </ul>)
+                    }}
+                </Droppable>
+            </DragDropContext>
             <AddItem update={appendItem} />
-        </div>
-    );
-}
-
-export function DraggableItem(props) {
-    return (
-        <li className="drg-item" draggable={true} >{props.data.item}</li>
+        </div >
     );
 }
