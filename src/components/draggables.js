@@ -1,41 +1,21 @@
 import AddItem, { Hx } from './additem';
-import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 
 export default function DraggableList(props) {
 
-    let [items, setItems] = useState(props.data.items);
-    let [next, setNext] = useState(props.data.next);
     const appendItem = (item) => {
-        let newItem = {
-            id: next,
+        props.updater('add', props.colKey, {
             item,
             desc: '...',
             img: null,
             status: false,
-        }
-        setItems([...items, newItem]);
-        setNext(next + 1);
+        })
     }
 
     const handleDragEnd = (res) => {
-
-        const newOrd = [...items];
-        let theItem = null;
-        console.log(res);
-
-        if (res.destination === null || res.destination.index !== res.source.index || res.destination.droppableId !== res.source.droppableId) {
-            [theItem] = newOrd.splice(res.source.index, 1);
-        }
-        if (res.destination) {
-            if (res.destination.droppableId === res.source.droppableId) {
-                newOrd.splice(res.destination.index, 0, theItem);
-            } else {
-                props.updateOuter(theItem, res.destination);
-            }
-        }
-        setItems(newOrd);
+        props.updater('move', props.colKey, res.source, res.destination)
+        return;
     }
 
     return (
@@ -45,7 +25,7 @@ export default function DraggableList(props) {
                 <Droppable droppableId={'drg-list-' + props.data.colId}>
                     {(provided) => {
                         return (<ul className={'drg-list'} ref={provided.innerRef} {...provided.droppableProps}>
-                            {items.map((item, index) =>
+                            {props.data.items.map((item, index) =>
                                 <Draggable key={'drg-item-' + item.id} draggableId={'drg-item-' + item.id} index={index}>
                                     {(provided) => <li className="drg-item" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>{item.item}</li>}
                                 </Draggable>
