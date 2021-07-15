@@ -1,4 +1,3 @@
-import React from 'react';
 import { Hx } from './additem';
 import DraggableList from './draggables';
 
@@ -7,7 +6,7 @@ export default function ProjectArea(props) {
         <div className="drag-proj">
             <Hx classes="proj-title" x={props.hx} title={props.data.title} />
             <div className="drg-area">
-                {props.data.cols.map(col => <DraggableList data={col} key={'drg-col-' + col.colId} />)}
+                {Object.keys(props.data.cols).map(key => <DraggableList data={props.data.cols[key]} key={'drg-col-' + props.data.cols[key].colId} />)}
             </div>
         </div>
     );

@@ -4,8 +4,8 @@ const projects = [
         title: 'project1',
         type: null,
         open: true,
-        cols: [
-            {
+        cols: {
+            1: {
                 colTitle: 'one',
                 colId: 1,
                 next: 7,
@@ -53,37 +53,37 @@ const projects = [
                 }]
             },
 
-            {
+            2: {
                 colTitle: 'two',
                 colId: 2,
                 items: []
             },
-            {
+            3: {
                 colTitle: 'three',
                 colId: 3,
                 items: []
             },
-            {
+            4: {
                 colTitle: 'four',
                 colId: 4,
                 items: []
             }
-        ]
+        }
     },
     {
         id: 2,
         title: 'project2',
         type: null,
         open: true,
-        cols: [
-            {
+        cols: {
+            1: {
                 colTitle: 'one',
-                colId: 2,
+                colId: 1,
                 next: 1,
                 items: []
             }
 
-        ]
+        }
     }
 
 ];

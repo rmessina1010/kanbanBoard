@@ -20,16 +20,22 @@ export default function DraggableList(props) {
     }
 
     const handleDragEnd = (res) => {
+
         const newOrd = [...items];
         let theItem = null;
+        console.log(res);
 
-        if (res.destination === null || res.destination.index !== res.source.index) {
+        if (res.destination === null || res.destination.index !== res.source.index || res.destination.droppableId !== res.source.droppableId) {
             [theItem] = newOrd.splice(res.source.index, 1);
         }
         if (res.destination) {
-            newOrd.splice(res.destination.index, 0, theItem);
+            if (res.destination.droppableId === res.source.droppableId) {
+                newOrd.splice(res.destination.index, 0, theItem);
+            } else {
+                props.updateOuter(theItem, res.destination);
+            }
         }
-        setItems(newOrd)
+        setItems(newOrd);
     }
 
     return (
