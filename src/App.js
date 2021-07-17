@@ -5,7 +5,7 @@ import projects from './components/data';
 function App() {
   return (
     <div className="App">
-      <ProjectArea hx={2} data={projects[0]} />
+      <ProjectArea hx={2} data={projects[0]} canAppend={(index) => index < 1} />
     </div>
   );
 }

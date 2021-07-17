@@ -38,7 +38,7 @@ export default function ProjectArea(props) {
             <Hx classes="proj-title" x={props.hx} title={props.data.title} />
             <div className="drg-area">
                 <DragDropContext onDragEnd={handleDragEnd}>
-                    {Object.keys(projectCols).map(key => <DraggableList data={projectCols[key]} updater={updater} colKey={key} key={'drg-col-' + projectCols[key].colId} />)}
+                    {Object.keys(projectCols).map((key, index) => <DraggableList data={projectCols[key]} updater={updater} colKey={key} key={'drg-col-' + projectCols[key].colId} canAppend={typeof props.canAppend === 'function' ? props.canAppend(index, key, projectCols) : props.canAppend} />)}
                 </DragDropContext>
             </div>
         </div>

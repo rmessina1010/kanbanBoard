@@ -27,7 +27,7 @@ export default function DraggableList(props) {
                             )}
                             {provided.placeholder}
                         </ul>
-                        <AddItem update={appendItem} />
+                        {props.canAppend ? <AddItem update={appendItem} /> : null}
                     </div>
                 )
             }}
