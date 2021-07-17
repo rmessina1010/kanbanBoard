@@ -8,7 +8,7 @@ const projects = [
             1: {
                 colTitle: 'one',
                 colId: 1,
-                next: 7,
+                next: 8,
                 items: [{
                     id: 1,
                     item: 'item1',
@@ -56,7 +56,14 @@ const projects = [
             2: {
                 colTitle: 'two',
                 colId: 2,
-                items: []
+                items: [
+                    {
+                        id: 7,
+                        item: 'item1',
+                        desc: 'bla blah',
+                        img: null,
+                        status: false,
+                    }]
             },
             3: {
                 colTitle: 'three',
