@@ -22,7 +22,11 @@ export default function DraggableList(props) {
                         <ul className={'drg-list'} >
                             {props.data.items.map((item, index) =>
                                 <Draggable key={'drg-item-' + item.id} draggableId={'drg-item-' + item.id} index={index}>
-                                    {(provided) => <li className="drg-item" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>{item.item}</li>}
+                                    {(provided) =>
+                                        <li className="drg-item" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                            {typeof props.render === 'function' ? props.render(item, index) : item.item}
+                                        </li>
+                                    }
                                 </Draggable>
                             )}
                             {provided.placeholder}
