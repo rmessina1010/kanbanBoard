@@ -3,7 +3,6 @@ import { Draggable, Droppable } from 'react-beautiful-dnd'
 
 
 export default function DraggableList(props) {
-
     const appendItem = (item) => {
         props.updater(props.colKey, {
             item,

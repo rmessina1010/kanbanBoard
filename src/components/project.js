@@ -6,31 +6,31 @@ import DraggableList from './draggables';
 
 export default function ProjectArea(props) {
 
-    const [projectCols, setProjectCols] = useState(props.data.cols)
+    const [projectData, setProjectData] = useState(props.data)
     const updater = (col, item) => {
-        let newData = JSON.parse(JSON.stringify(projectCols));
-        item.id = newData[col].next;
-        newData[col].next++;
-        newData[col].items.push(item);
-        setProjectCols(newData);
+        let newData = JSON.parse(JSON.stringify(projectData));
+        item.id = newData.nextItem;
+        newData.nextItem++;
+        newData.cols[col].items.push(item);
+        setProjectData(newData);
     }
 
     const handleDragEnd = (res) => {
         let theItem = null;
-        let newData = JSON.parse(JSON.stringify(projectCols));
+        let newData = JSON.parse(JSON.stringify(projectData));
         let sourceCol = res.source.droppableId.split('-').pop();
-        [theItem] = newData[sourceCol].items.splice(res.source.index, 1);
+        [theItem] = newData.cols[sourceCol].items.splice(res.source.index, 1);
 
         if (res.destination) {
             if (res.destination.droppableId === res.source.droppableId) {
-                newData[sourceCol].items.splice(res.destination.index, 0, theItem);
+                newData.cols[sourceCol].items.splice(res.destination.index, 0, theItem);
             } else {
                 let targCol = res.destination.droppableId.split('-').pop();
-                newData[targCol].items.splice(res.destination.index, 0, theItem);
+                newData.cols[targCol].items.splice(res.destination.index, 0, theItem);
             }
         }
 
-        setProjectCols(newData);
+        setProjectData(newData);
     }
 
     return (
@@ -38,7 +38,16 @@ export default function ProjectArea(props) {
             <Hx classes="proj-title" x={props.hx} title={props.data.title} />
             <div className="drg-area">
                 <DragDropContext onDragEnd={handleDragEnd}>
-                    {Object.keys(projectCols).map((key, index) => <DraggableList data={projectCols[key]} updater={updater} colKey={key} key={'drg-col-' + projectCols[key].colId} render={props.render} canAppend={typeof props.canAppend === 'function' ? props.canAppend(index, key, projectCols) : props.canAppend} />)}
+                    {Object.keys(projectData.cols).map((key, index) =>
+                        <DraggableList
+                            data={projectData.cols[key]}
+                            updater={updater}
+                            colKey={key}
+                            key={'drg-col-' + projectData.cols[key].colId}
+                            render={props.render}
+                            canAppend={typeof props.canAppend === 'function' ? props.canAppend(0, key, projectData.cols) : props.canAppend}
+                        />
+                    )}
                 </DragDropContext>
             </div>
         </div>

@@ -4,11 +4,12 @@ const projects = [
         title: 'project1',
         type: null,
         open: true,
+        nextItem: 8,
+        nextCol: 5,
         cols: {
             1: {
                 colTitle: 'one',
                 colId: 1,
-                next: 8,
                 items: [{
                     id: 1,
                     item: 'item1',
