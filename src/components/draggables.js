@@ -3,7 +3,7 @@ import { Hx } from './additem';
 
 export default function DraggableList(props) {
     return (
-        <Droppable droppableId={'drg-list-' + props.data.colId}>
+        <Droppable droppableId={'drg-list-' + props.data.colId} type="items">
             {(provided) => {
                 return (
                     <div ref={provided.innerRef} {...provided.droppableProps}>
