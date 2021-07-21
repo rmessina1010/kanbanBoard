@@ -1,13 +1,20 @@
 import { useState } from 'react'
-import { DragDropContext } from 'react-beautiful-dnd'
-
-import { Hx } from './additem';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import AddItem, { Hx } from './additem';
 import DraggableList from './draggables';
 
 export default function ProjectArea(props) {
 
-    const [projectData, setProjectData] = useState(props.data)
-    const updater = (col, item) => {
+    const [projectData, setProjectData] = useState(props.data);
+
+    const appendItem = (col, data) => {
+
+        let item = {
+            item: data,
+            desc: '...',
+            img: null,
+            status: false,
+        };
         let newData = JSON.parse(JSON.stringify(projectData));
         item.id = newData.nextItem;
         newData.nextItem++;
@@ -29,27 +36,39 @@ export default function ProjectArea(props) {
                 newData.cols[targCol].items.splice(res.destination.index, 0, theItem);
             }
         }
-
         setProjectData(newData);
     }
+
+
 
     return (
         <div className="drag-proj">
             <Hx classes="proj-title" x={props.hx} title={props.data.title} />
-            <div className="drg-area">
-                <DragDropContext onDragEnd={handleDragEnd}>
-                    {Object.keys(projectData.cols).map((key, index) =>
-                        <DraggableList
-                            data={projectData.cols[key]}
-                            updater={updater}
-                            colKey={key}
-                            key={'drg-col-' + projectData.cols[key].colId}
-                            render={props.render}
-                            canAppend={typeof props.canAppend === 'function' ? props.canAppend(0, key, projectData.cols) : props.canAppend}
-                        />
-                    )}
-                </DragDropContext>
-            </div>
+            <DragDropContext onDragEnd={handleDragEnd}>
+                <Droppable droppableId="drg-area-cols" type="cols" direction="horizontal">
+                    {(provided) => {
+                        return (<div className="drg-area">
+                            {Object.keys(projectData.cols).map((key, index) =>
+                                <Draggable key={'drg-col-' + key} draggableId={'drg-col-' + key} index={index}>
+                                    {(provided) => {
+                                        let canAppend = (typeof props.canAppend === 'function' ? props.canAppend(index, key, projectData.cols) : props.canAppend)
+                                        return (
+                                            <div className={'drg-col'}>
+                                                <DraggableList
+                                                    data={projectData.cols[key]}
+                                                    colKey={key}
+                                                    key={'drg-col-' + projectData.cols[key].colId}
+                                                    render={props.render}
+                                                />
+                                                {canAppend ? <AddItem update={appendItem} colKey={key} /> : null}
+                                            </div>);
+                                    }}
+                                </Draggable>
+                            )}
+                        </div>);
+                    }}
+                </Droppable>
+            </DragDropContext>
         </div>
     );
 }

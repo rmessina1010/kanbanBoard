@@ -9,7 +9,7 @@ export default function AddItem(props) {
     const selfUpdate = e => { setData(e.target.value); }
     const updateTarget = () => {
         if (typeof props.update === 'function' && data.trim() !== '') {
-            props.update(data);
+            props.update(props.colKey, data);
             setData('');
         }
     }

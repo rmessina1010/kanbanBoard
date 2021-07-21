@@ -1,7 +1,6 @@
 import './App.css';
 import ProjectArea from './components/project';
 import projects from './components/data';
-import AddItem from './components/additem';
 
 function App() {
   return (
