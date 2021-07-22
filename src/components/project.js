@@ -25,7 +25,6 @@ export default function ProjectArea(props) {
 
     const handleDragEnd = (res) => {
         let theItem = null;
-        console.log(res);
         if (res.type === 'items') {
             let newData = JSON.parse(JSON.stringify(projectData));
             let sourceCol = res.source.droppableId.split('-').pop();
@@ -40,7 +39,7 @@ export default function ProjectArea(props) {
             }
             setProjectData(newData);
             return;
-        } else if (res.destination && res.destination.droppableId === res.source.droppableId) {
+        } else if (res.type === 'cols' && res.destination) {
             let columnade = [...colOrder];
             [theItem] = columnade.splice(res.source.index, 1);
             columnade.splice(res.destination.index, 0, theItem);
