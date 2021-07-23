@@ -6,6 +6,7 @@ const projects = [
         open: true,
         nextItem: 8,
         nextCol: 5,
+        colOrd: [1, 2, 3, 4],
         cols: {
             1: {
                 colTitle: 'one',
@@ -83,6 +84,9 @@ const projects = [
         title: 'project2',
         type: null,
         open: true,
+        nextItem: 2,
+        nextCol: 2,
+        colOrd: [1],
         cols: {
             1: {
                 colTitle: 'one',

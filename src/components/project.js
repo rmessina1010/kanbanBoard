@@ -6,10 +6,8 @@ import DraggableList from './draggables';
 export default function ProjectArea(props) {
 
     const [projectData, setProjectData] = useState(props.data);
-    const [colOrder, setColOrder] = useState(Object.keys(projectData.cols));
 
     const appendItem = (col, data) => {
-
         let item = {
             item: data,
             desc: '...',
@@ -25,8 +23,8 @@ export default function ProjectArea(props) {
 
     const handleDragEnd = (res) => {
         let theItem = null;
+        let newData = JSON.parse(JSON.stringify(projectData));
         if (res.type === 'items') {
-            let newData = JSON.parse(JSON.stringify(projectData));
             let sourceCol = res.source.droppableId.split('-').pop();
             [theItem] = newData.cols[sourceCol].items.splice(res.source.index, 1);
             if (res.destination) {
@@ -40,10 +38,9 @@ export default function ProjectArea(props) {
             setProjectData(newData);
             return;
         } else if (res.type === 'cols' && res.destination) {
-            let columnade = [...colOrder];
-            [theItem] = columnade.splice(res.source.index, 1);
-            columnade.splice(res.destination.index, 0, theItem);
-            setColOrder(columnade);
+            [theItem] = newData.colOrd.splice(res.source.index, 1);
+            newData.colOrd.splice(res.destination.index, 0, theItem);
+            setProjectData(newData);
             return;
         }
     }
@@ -57,7 +54,7 @@ export default function ProjectArea(props) {
                 <Droppable droppableId="drg-area-cols" type="cols" direction="horizontal">
                     {(provided) => {
                         return (<div className="drg-area" ref={provided.innerRef} {...provided.droppableProps}>
-                            {colOrder.map((key, index) =>
+                            {projectData.colOrd.map((key, index) =>
                                 <Draggable key={'drg-col-' + key} draggableId={'drg-col-' + key} index={index}>
                                     {(provided) => {
                                         let canAppend = (typeof props.canAppend === 'function' ? props.canAppend(index, key, projectData.cols) : props.canAppend)
